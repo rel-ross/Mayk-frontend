@@ -10,10 +10,10 @@ export default function Canvas() {
 
     useEffect(() => {
         const canvas = canvasRef.current
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-        // canvas.style.width = `${window.innerWidth}px`
-        // canvas.style.height = `${window.innerHeight}px`
+        canvas.width = window.innerWidth * 0.75
+        canvas.height = window.innerHeight * 0.75
+        // canvas.style.width = '100%';
+        // canvas.style.height = '100%';
 
         const context = canvas.getContext("2d")
         context.scale(1,1)

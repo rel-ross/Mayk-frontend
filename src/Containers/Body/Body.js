@@ -21,17 +21,17 @@ import Canvas from '../../Components/Canvas/Canvas'
 
 export default function Body() {
     // const classes = useStyles();
-    const [spacing, setSpacing] = React.useState(2);
+    const [spacing, setSpacing] = React.useState(3);
 
     return (
         <div className="body">
             <div >
-                <Grid container spacing={1}>
+                <Grid container spacing={spacing}>
                     <Grid item xs={12}>
                         <ProjectHeader />
                 
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                         <ShoppingList />
                         <MaterialsOnHand />
                     </Grid>
