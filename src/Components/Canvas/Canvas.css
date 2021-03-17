@@ -1,0 +1,7 @@
+.canvas {
+    background-image: url(empty_trailer.jpg);
+    background-size: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
