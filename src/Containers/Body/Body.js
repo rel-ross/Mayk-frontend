@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { Paper } from '@material-ui/core';
 import './Body.css'
 
 import ProjectHeader from '../../Components/ProjectHeader/ProjectHeader'
@@ -32,10 +33,10 @@ export default function Body() {
                 
                     </Grid>
                     <Grid item xs={2}>
-                        <ShoppingList />
-                        <MaterialsOnHand />
+                            <ShoppingList />
+                            <MaterialsOnHand />
                     </Grid>
-                    <Grid item xs={7}>
+                    <Grid item xs={3}>
                         <Canvas />
                     </Grid>
                 </Grid>

@@ -1,14 +1,21 @@
 import React from 'react'
+import { Paper } from '@material-ui/core';
+
+import './MaterialsOnHand.css'
 
 export default function MaterialsOnHand() {
+
     return (
-        <div>
-            <h1> Materials on hand</h1>
-            <div>
-            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis 
-            consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
-        </div>
+        <div> 
+            <Paper style={{
+                padding: 10
+            }}>
+                <h2>Materials On Hand</h2>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 3</li>
+                </ul>
+            </Paper>
         </div>
     )
 }
