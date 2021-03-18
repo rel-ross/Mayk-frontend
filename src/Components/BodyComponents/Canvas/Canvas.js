@@ -53,6 +53,7 @@ export default function Canvas() {
                 onMouseMove = { draw }
                 ref = { canvasRef }
             />
+            
         </div>
     )
 }

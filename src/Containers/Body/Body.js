@@ -4,10 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import { Paper } from '@material-ui/core';
 import './Body.css'
 
-import ProjectHeader from '../../Components/ProjectHeader/ProjectHeader'
-import ShoppingList from '../../Components/ShoppingList/ShoppingList'
-import MaterialsOnHand from '../../Components/MaterialsOnHandList/MaterialsOnHand'
-import Canvas from '../../Components/Canvas/Canvas'
+import ProjectHeader from '../../Components/BodyComponents/ProjectHeader/ProjectHeader'
+import ShoppingList from '../../Components/BodyComponents/ShoppingList/ShoppingList'
+import MaterialsOnHand from '../../Components/BodyComponents/MaterialsOnHandList/MaterialsOnHand'
+import Canvas from '../../Components/BodyComponents/Canvas/Canvas'
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
