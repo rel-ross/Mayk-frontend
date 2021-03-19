@@ -1,0 +1,6 @@
+.header-container {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
