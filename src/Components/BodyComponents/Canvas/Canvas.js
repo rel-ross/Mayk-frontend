@@ -3,7 +3,6 @@ import CanvasDraw from "react-canvas-draw";
 
 import './Canvas.css'
 
-import SampleImage from './empty_trailer.jpg'
 
 export default function Canvas() {
 
@@ -88,8 +87,18 @@ export default function Canvas() {
           canvasWidth={state.width}
           canvasHeight={state.height}
           imgSrc= {"https://images.unsplash.com/flagged/photo-1556438758-872c68902f60?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=753&q=80"}
+
         />
             
-        </div>
+        <button
+          onClick={() => {
+            canvas.current.loadSaveData(
+              localStorage.getItem("savedDrawing")
+            );
+          }}
+        >
+          Loads previous drawing
+        </button>
+    </div>
     )
 }
