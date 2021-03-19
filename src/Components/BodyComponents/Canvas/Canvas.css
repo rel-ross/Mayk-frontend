@@ -1,5 +1,4 @@
  .canvas {
-    background-image: url(empty_trailer.jpg);
     background-size: cover;
     /* width: 100%; */
     background-position: center;
@@ -13,6 +12,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+}
+
+.canvas-draw:hover {
+    cursor: url('../../../Assets/baseline_mode_black_18dp.png') 0 30, auto;
 }
 
 .canvas-attributes > * {
