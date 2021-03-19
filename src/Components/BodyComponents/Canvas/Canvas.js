@@ -1,58 +1,94 @@
 import React, { useRef, useEffect, useState } from 'react'
+import CanvasDraw from "react-canvas-draw";
 
 import './Canvas.css'
 
+import SampleImage from './empty_trailer.jpg'
+
 export default function Canvas() {
 
-    const canvasRef = useRef(null)
-    const contextRef = useRef(null)
-    const [isDrawing, setIsDrawing] = useState(false)
 
-    useEffect(() => {
-        const canvas = canvasRef.current
-        canvas.width = window.innerWidth * 0.75
-        canvas.height = window.innerHeight * 0.75
-        // canvas.style.width = '100%';
-        // canvas.style.height = '100%';
+    const [state, setState] = useState({
+        color: "#ffc600",
+        width: 800,
+        height: 500,
+        brushRadius: 5,
+        lazyRadius: 0
+      })
 
-        const context = canvas.getContext("2d")
-        context.scale(1,1)
-        context.lineCap = "round"
-        context.strokeStyle = "black"
-        context.lineWidth = 5
-        contextRef.current = context
-    }, [])
-
-    const startDrawing = ({ nativeEvent }) => {
-        const {offsetX, offsetY} = nativeEvent
-        contextRef.current.beginPath()
-        contextRef.current.moveTo(offsetX, offsetY)
-        setIsDrawing(true)
-    }
-
-    const draw = ({ nativeEvent }) => {
-        if(!isDrawing) {
-            return
-        }
-        const { offsetX, offsetY } = nativeEvent
-        contextRef.current.lineTo(offsetX, offsetY)
-        contextRef.current.stroke()
-    }
-
-    const finishDrawing = () => {
-        contextRef.current.closePath()
-        setIsDrawing(false)
-
-    }
+      const canvas = useRef();
 
     return (
         <div>
-            <canvas className="canvas"
-                onMouseDown = {startDrawing}
-                onMouseUp = {finishDrawing}
-                onMouseMove = { draw }
-                ref = { canvasRef }
-            />
+          <div className="canvas-attributes">
+            <button
+                onClick={() => {
+                localStorage.setItem(
+                    "savedDrawing",
+                    canvas.current.getSaveData()
+                );
+                }}
+            >
+                Save
+            </button>
+
+            <button
+                onClick={() => {
+                canvas.current.clear();
+                }}
+            >
+                Clear
+            </button>
+
+            <button
+                onClick={() => {
+                canvas.current.undo();
+                }}
+            >
+                Undo
+            </button>
+
+            <div>
+                <label>Width:</label>
+                <input
+                type="number"
+                value={state.width}
+                onChange={e =>
+                    setState({ width: parseInt(e.target.value, 10) })
+                }
+                />
+            </div>
+            <div>
+                <label>Height:</label>
+                <input
+                type="number"
+                value={state.height}
+                onChange={e =>
+                    setState({ height: parseInt(e.target.value, 10) })
+                }
+                />
+            </div>
+            <div>
+                <label>Brush-size:</label>
+                <input
+                type="number"
+                value={state.brushRadius}
+                onChange={e =>
+                    setState({ brushRadius: parseInt(e.target.value, 10) })
+                }
+                />
+            </div>
+        </div>
+        
+        <CanvasDraw
+          ref={canvas}
+          brushColor={state.color}
+          brushRadius={state.brushRadius}
+          lazyRadius={state.lazyRadius}
+          canvasWidth={state.width}
+          canvasHeight={state.height}
+          imgSrc= {"https://images.unsplash.com/flagged/photo-1556438758-872c68902f60?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=753&q=80"}
+        />
             
         </div>
     )

@@ -1,0 +1,11 @@
+.logo {
+    width: 15%;
+}
+
+.header-navigation {
+    display: flex;
+    flex: row;
+    justify-content: flex-start;
+    color: white;
+    align-items: center;
+}

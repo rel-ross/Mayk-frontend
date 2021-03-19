@@ -9,17 +9,6 @@ import ShoppingList from '../../Components/BodyComponents/ShoppingList/ShoppingL
 import MaterialsOnHand from '../../Components/BodyComponents/MaterialsOnHandList/MaterialsOnHand'
 import Canvas from '../../Components/BodyComponents/Canvas/Canvas'
 
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//       flexGrow: 1,
-//     },
-//     container: {
-//       padding: theme.spacing(2),
-//       textAlign: 'center',
-//       color: theme.palette.text.secondary,
-//     },
-//   }));
-
 export default function Body() {
     // const classes = useStyles();
     const [spacing, setSpacing] = React.useState(3);
