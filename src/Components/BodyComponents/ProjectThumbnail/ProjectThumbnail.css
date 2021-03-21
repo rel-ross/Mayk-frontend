@@ -1,0 +1,12 @@
+.project-thumbnail {
+    box-shadow: 2px 2px 10px rgb(204, 203, 203);
+    margin-top: 20px;
+    height: 250px;
+    width: 205px;
+    padding: 0px 20px;
+}
+
+.thumbnail-image {
+    height: 50%;
+    float: bottom;
+}

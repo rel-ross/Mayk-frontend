@@ -13,6 +13,7 @@
     "react-canvas-draw": "^1.1.1",
     "react-dom": "^16.14.0",
     "react-scripts": "4.0.3",
+    "react-tooltip": "^4.2.15",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
