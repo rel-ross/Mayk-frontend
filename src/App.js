@@ -1,8 +1,7 @@
 import './App.css';
 
 import Header from './Containers/Header/Header'
-import ProjectShowContainer from './Containers/ProjectShowContainer/ProjectShowContainer'
-import AllProjectsShowContainer from './Containers/AllProjectsShowContainer/AllProjectsShowContainer'
+import Body from './Containers/Body/Body'
 import Footer from './Containers/Footer/Footer'
 
 import { useState, useEffect } from 'react'
@@ -22,8 +21,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <ProjectShowContainer projects={projects}/>
-      <AllProjectsShowContainer projects={projects}/>
+      <Body projects={projects}/>
       <Footer />
     </div>
   );

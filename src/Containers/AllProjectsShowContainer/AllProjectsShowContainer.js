@@ -13,7 +13,6 @@ export default function AllProjectsShowContainer({ projects }) {
     
     return (
         <div className="all-projects">
-        
             {displayProjects()}
         </div>
     )
