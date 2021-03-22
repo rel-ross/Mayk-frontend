@@ -3,11 +3,11 @@
     display: flex;
     justify-content: space-around;
     padding: 30px;
-    
+    z-index: 900;
 }
 
 .header__bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
@@ -17,4 +17,5 @@
     background-image: linear-gradient(#ff9d2f, #ff6126);
     transform: skewY(-3deg);
     transform-origin: top left;
+    z-index: 800;
   }

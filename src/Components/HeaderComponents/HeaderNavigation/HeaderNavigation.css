@@ -8,5 +8,6 @@
     justify-content: flex-start;
     color: white;
     align-items: center;
-    position: relative;
+    position: fixed;
+    z-index: 999;
 }
