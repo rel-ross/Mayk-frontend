@@ -8,14 +8,14 @@ import ProjectHeader from '../../Components/BodyComponents/ProjectHeader/Project
 import ShoppingList from '../../Components/BodyComponents/ShoppingList/ShoppingList'
 import MaterialsOnHand from '../../Components/BodyComponents/MaterialsOnHandList/MaterialsOnHand'
 import Canvas from '../../Components/BodyComponents/Canvas/Canvas'
+import UploadImage from '../../Components/BodyComponents/UploadImage/UploadImage'
 
 import './ProjectShowContainer.css'
 
-export default function Body() {
+export default function Body({url, file, handleFileChange, handleUpload}) {
     // const classes = useStyles();
     const [spacing, setSpacing] = React.useState(3);
     
-
     return (
         <div className="project-show-container">
             <div >
@@ -31,7 +31,7 @@ export default function Body() {
                             <MaterialsOnHand />
                     </Grid>
                     <Grid item xs={3}>
-                        <Canvas />
+                        <Canvas url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
                     </Grid>
                 </Grid>
             </div>
