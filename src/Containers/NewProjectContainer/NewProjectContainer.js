@@ -9,8 +9,9 @@ import ShoppingList from '../../Components/BodyComponents/ShoppingList/ShoppingL
 import MaterialsOnHand from '../../Components/BodyComponents/MaterialsOnHandList/MaterialsOnHand'
 import Canvas from '../../Components/BodyComponents/Canvas/Canvas'
 import UploadImage from '../../Components/BodyComponents/UploadImage/UploadImage'
+import NewProject from '../../Components/BodyComponents/NewProject/NewProject'
 
-import './ProjectShowContainer.css'
+import './NewProjectContainer.css'
 
 export default function Body({url, file, handleFileChange, handleUpload}) {
     // const classes = useStyles();
@@ -20,12 +21,6 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
     const fileHasBeenLoaded = () => {
         setFileLoaded(true)
     }
-
-    // const displayCanvas = () => {
-    //     return fileLoaded
-    //    ? <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded }/>
-    //     : <Canvas url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
-    // }
     
     return (
         <div className="project-show-container">
@@ -35,7 +30,7 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
                         <ProjectHeader />
                         <p data-tip="hello world">Tooltip</p>
                         <ReactTooltip />
-                
+                        
                     </Grid>
                     <Grid item xs={2}>
                             <ShoppingList />
@@ -45,7 +40,7 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
                         {
                         fileLoaded
                         ?<Canvas url={ url } file={ file }/>
-                        : <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
+                        : <NewProject fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
                         
                         }
                     </Grid>

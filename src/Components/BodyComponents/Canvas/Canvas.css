@@ -18,13 +18,33 @@
     cursor: url('../../../Assets/baseline_mode_black_18dp.png') 0 30, auto;
 }
 
-.canvas-attributes > * {
-    margin: 0px 0px 20px 20px;
-}
-
-.canvas-controls {
-    padding: 20px;
-    background: grey;
+.canvas-toolbar {
+    color: white;
+    background: #3f51b5;
+    width: 800px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.canvas-toolbar > button {
+    padding: 20px 20px 20px 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.canvas-toolbar > button:hover {
+    background-color: rgb(255, 255, 255, 0.2);
+}
+
+.canvas-toolbar > div {
+    padding: 20px 20px 20px 20px;
+    background-color: transparent;
+    border: none;
+    color: orange;
+}
+input[type="number"] {
+   margin-left: 5px;
+    width: 50px;
 }

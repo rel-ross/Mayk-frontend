@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
 import CanvasDraw from "react-canvas-draw";
+import UndoIcon from '@material-ui/icons/Undo';
+import ClearIcon from '@material-ui/icons/Clear';
+import SaveIcon from '@material-ui/icons/Save';
 
 import './Canvas.css'
 
@@ -7,7 +10,7 @@ import './Canvas.css'
 export default function Canvas({ file, url, handleFileChange, handleUpload }) {
 
 
-    const [state, setState] = useState({
+    const [canvasState, setCanvasState] = useState({
         color: "#ffc600",
         width: 800,
         height: 500,
@@ -16,11 +19,9 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
         hideGrid: true,
       })
 
-    //   const [imageState, setImageState] = useState({
-    //     imgSrc: url
-    // })
       const canvas = useRef();
-      const testImage = "https://i1.wp.com/www.southwestconferenceblog.org/wp-content/uploads/2018/05/this-is-a-test-wp.png?fit=825%2C510"
+
+    url="https://upload.wikimedia.org/wikipedia/commons/0/0d/Bedroom_Mitcham.jpg"
 
       const saveDrawingToDatabase = (projectName, lineCoordinates, image) => {
         fetch('http://localhost:4000/drawings', {
@@ -37,16 +38,17 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
 
     return (
         <div>
+            <div className="canvas-toolbar">
                 <button
                     onClick={() => {
                         localStorage.setItem(
                             "savedDrawing",
                             canvas.current.getSaveData()
                         )
-                        saveDrawingToDatabase("TEST project", localStorage.getItem("savedDrawing"), testImage)
+                        saveDrawingToDatabase("TEST project", localStorage.getItem("savedDrawing"), url)
                     }}
                 >
-                Save
+                 <SaveIcon style={{fill: "orange"}}/>
                 </button>
 
                 <button
@@ -54,7 +56,7 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
                     canvas.current.clear();
                     }}
                 >
-                    Clear
+                    <ClearIcon style={{fill: "orange"}}/>
                 </button>
 
                 <button
@@ -62,47 +64,51 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
                     canvas.current.undo();
                     }}
                 >
-                    Undo
+                    <UndoIcon style={{fill: "orange"}}/>
                 </button>
 
-                <form>
-                    <label>Width:</label>
+                <div>
+                    <label>Width</label>
                     <input
                     type="number"
-                    value={state.width}
+                    value={canvasState.width}
                     onChange={e =>
-                        setState({ width: parseInt(e.target.value, 10) })
+                        setCanvasState({ width: parseInt(e.target.value, 10) })
                     }
                     />
+                </div>
 
+                <div>
                     <label>Height:</label>
                     <input
                     type="number"
-                    value={state.height}
+                    value={canvasState.height}
                     onChange={e =>
-                        setState({ height: parseInt(e.target.value, 10) })
+                        setCanvasState({ height: parseInt(e.target.value, 10) })
                     }
                     />
+                </div>
 
+                <div>
                     <label>Brush-size:</label>
                     <input
                     type="number"
-                    value={state.brushRadius}
+                    value={canvasState.brushRadius}
                     onChange={e =>
-                        setState({ brushRadius: parseInt(e.target.value, 10) })
+                        setCanvasState({ brushRadius: parseInt(e.target.value, 10) })
                     }
                     />
-                </form>
-        
+                </div>
+             </div>      
         <CanvasDraw
           ref={canvas}
-          brushColor={state.color}
-          brushRadius={state.brushRadius}
-          lazyRadius={state.lazyRadius}
-          canvasWidth={state.width}
-          canvasHeight={state.height}
-          imgSrc= "https://upload.wikimedia.org/wikipedia/commons/0/0d/Bedroom_Mitcham.jpg"
-          hideGrid={state.hideGrid}
+          brushColor={canvasState.color}
+          brushRadius={canvasState.brushRadius}
+          lazyRadius={canvasState.lazyRadius}
+          canvasWidth={canvasState.width}
+          canvasHeight={canvasState.height}
+          imgSrc= {url}
+          hideGrid={canvasState.hideGrid}
           loadTimeOffset = {0}
         />
             
