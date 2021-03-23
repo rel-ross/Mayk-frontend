@@ -21,10 +21,10 @@ export default function Body({projects}) {
   
     function handleUpload(e) {
       e.preventDefault();
-      const uploadTask = storage.ref(`/images/${file.name}`).put(file);
+      const uploadTask = storage.ref(`/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
         storage
-          .ref("images")
+          .ref("/")
           .child(file.name)
           .getDownloadURL()
           .then((url) => {
