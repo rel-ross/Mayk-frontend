@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import CanvasDraw from "react-canvas-draw";
 
 import './Canvas.css'
@@ -7,18 +7,18 @@ import './Canvas.css'
 export default function Canvas({ file, url, handleFileChange, handleUpload }) {
 
 
-    const [canvasState, setCanvasState] = useState({
+    const [state, setState] = useState({
         color: "#ffc600",
         width: 800,
         height: 500,
         brushRadius: 5,
         lazyRadius: 0,
+        hideGrid: true,
       })
 
-      const [imageState, setImageState] = useState({
-        imgSrc: "https://i1.wp.com/www.southwestconferenceblog.org/wp-content/uploads/2018/05/this-is-a-test-wp.png?fit=825%2C510"
-    })
-
+    //   const [imageState, setImageState] = useState({
+    //     imgSrc: url
+    // })
       const canvas = useRef();
       const testImage = "https://i1.wp.com/www.southwestconferenceblog.org/wp-content/uploads/2018/05/this-is-a-test-wp.png?fit=825%2C510"
 
@@ -37,13 +37,6 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
 
     return (
         <div>
-          <div className="canvas-attributes">
-                  <form onSubmit={handleUpload}>
-          <input type="file" onChange={handleFileChange} />
-          <button disabled={!file}>Upload</button>
-        </form>
-        <img src={url} alt="" />
-            <div className="canvas-controls">
                 <button
                     onClick={() => {
                         localStorage.setItem(
@@ -72,47 +65,44 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
                     Undo
                 </button>
 
-                <div>
+                <form>
                     <label>Width:</label>
                     <input
                     type="number"
-                    value={canvasState.width}
+                    value={state.width}
                     onChange={e =>
-                        setCanvasState({ width: parseInt(e.target.value, 10) })
+                        setState({ width: parseInt(e.target.value, 10) })
                     }
                     />
-                </div>
-                <div>
+
                     <label>Height:</label>
                     <input
                     type="number"
-                    value={canvasState.height}
+                    value={state.height}
                     onChange={e =>
-                        setCanvasState({ height: parseInt(e.target.value, 10) })
+                        setState({ height: parseInt(e.target.value, 10) })
                     }
                     />
-                </div>
-                <div>
+
                     <label>Brush-size:</label>
                     <input
                     type="number"
-                    value={canvasState.brushRadius}
+                    value={state.brushRadius}
                     onChange={e =>
-                        setCanvasState({ brushRadius: parseInt(e.target.value, 10) })
+                        setState({ brushRadius: parseInt(e.target.value, 10) })
                     }
                     />
-                </div>
-            </div>
-        </div>
+                </form>
         
         <CanvasDraw
           ref={canvas}
-          brushColor={canvasState.color}
-          brushRadius={canvasState.brushRadius}
-          lazyRadius={canvasState.lazyRadius}
-          canvasWidth={canvasState.width}
-          canvasHeight={canvasState.height}
-          imgSrc= {url}
+          brushColor={state.color}
+          brushRadius={state.brushRadius}
+          lazyRadius={state.lazyRadius}
+          canvasWidth={state.width}
+          canvasHeight={state.height}
+          imgSrc= "https://upload.wikimedia.org/wikipedia/commons/0/0d/Bedroom_Mitcham.jpg"
+          hideGrid={state.hideGrid}
           loadTimeOffset = {0}
         />
             

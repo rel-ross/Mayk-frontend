@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Paper } from '@material-ui/core';
@@ -15,6 +15,17 @@ import './ProjectShowContainer.css'
 export default function Body({url, file, handleFileChange, handleUpload}) {
     // const classes = useStyles();
     const [spacing, setSpacing] = React.useState(3);
+    const [fileLoaded, setFileLoaded] = useState(false)
+
+    const fileHasBeenLoaded = () => {
+        setFileLoaded(true)
+    }
+
+    // const displayCanvas = () => {
+    //     return fileLoaded
+    //    ? <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded }/>
+    //     : <Canvas url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
+    // }
     
     return (
         <div className="project-show-container">
@@ -31,7 +42,12 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
                             <MaterialsOnHand />
                     </Grid>
                     <Grid item xs={3}>
-                        <Canvas url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
+                        {
+                        fileLoaded
+                        ?<Canvas url={ url } file={ file }/>
+                        : <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
+                        
+                        }
                     </Grid>
                 </Grid>
             </div>
