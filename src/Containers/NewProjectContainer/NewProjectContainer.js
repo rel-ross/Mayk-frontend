@@ -17,6 +17,11 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
     // const classes = useStyles();
     const [spacing, setSpacing] = React.useState(3);
     const [fileLoaded, setFileLoaded] = useState(false)
+    const project = {
+        projectName: '',
+        lineCoordinates: '',
+        image: ''
+    }
 
     const fileHasBeenLoaded = () => {
         setFileLoaded(true)
