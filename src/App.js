@@ -16,7 +16,7 @@ function App() {
       .then(result => {
         setProjects(result)
       })
-  })
+  }, [])
 
   return (
     <div className="App">
