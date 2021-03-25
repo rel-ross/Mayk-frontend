@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Paper } from '@material-ui/core';
 import ReactTooltip from 'react-tooltip';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import ProjectHeader from '../../Components/BodyComponents/ProjectHeader/ProjectHeader'
 import ShoppingList from '../../Components/BodyComponents/ShoppingList/ShoppingList'
@@ -17,11 +18,6 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
     // const classes = useStyles();
     const [spacing, setSpacing] = React.useState(3);
     const [fileLoaded, setFileLoaded] = useState(false)
-    const project = {
-        projectName: '',
-        lineCoordinates: '',
-        image: ''
-    }
 
     const fileHasBeenLoaded = () => {
         setFileLoaded(true)

@@ -1,7 +1,9 @@
 import React, {useReducer} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import UploadImage from '../UploadImage/UploadImage'
+
 
 import './NewProject.css'
 
@@ -40,6 +42,28 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
         })
     }
 
+    const handleFileSubmit = (event) => {
+        event.preventDefault();
+        const URL= "http://localhost:4000/upload"
+        const formData = new FormData(event.target);
+        fetch(URL, {
+            method: "POST",
+            // This contains the file to be uploaded
+            body: new FormData(event.target)
+        }).then(response => response.json())
+        .then(({data, error}) => {
+            const message = error
+                // If there was an error, show it
+                ? `There was an error: ${error}`
+                // Otherwise, show the URL of the uploaded file
+                : `File was uploaded to: <a href="${data}">${data}</a>`
+                console.log(data)
+        }).catch(error => {
+            // If there was a problem, show the error message
+            console.log(`There was an error: ${error.message}`)
+        });
+    }
+
 
     const useStyles = makeStyles((theme) => ({
     paper: {
@@ -67,27 +91,33 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
 
     return (
         <div className="new-project">
-            <button type="button" onClick={handleOpen}>
-        + New Project
-      </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <div className="modal">
-          <h2 id="simple-modal-title">Start a New Project</h2>
-            <form onSubmit={ handleSubmit }>
-                <label>Project Name</label>
-                <input name="projectName" value={ projectName } onChange={ handleChange }></input>
-                <button type="submit">Submit</button>
-            </form>
-            <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
-         
+            <button className="add-project-button" onClick={handleOpen}>
+                <AddCircleIcon fontSize="large"/>
+            </button>
+            {/* <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                <div className="modal">
+                <h2 id="simple-modal-title">Start a New Project</h2>
+                    <form onSubmit={ handleSubmit }>
+                        <label>Project Name</label>
+                        <input name="projectName" value={ projectName } onChange={ handleChange }></input>
+                        <button type="submit">✓</button>
+                    </form>
+                    <form enctype="multipart/form-data" onSubmit={ handleFileSubmit }>
+                        <label for="file">File</label>
+                        <input id="file" name="file" type="file" required />
 
-        </div>
-      </Modal>
+                        <input type="submit" value="Upload File" />
+
+                        <div id="message"></div>
+                    </form> */}
+                    <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
+                {/* </div>
+            </Modal> */}
         </div>
     )
 }
