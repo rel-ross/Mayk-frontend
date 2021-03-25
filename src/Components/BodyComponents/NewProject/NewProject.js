@@ -54,9 +54,9 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
         .then(({data, error}) => {
             const message = error
                 // If there was an error, show it
-                ? `There was an error: ${error}`
+                ? console.log(`There was an error: ${error}`)
                 // Otherwise, show the URL of the uploaded file
-                : `File was uploaded to: <a href="${data}">${data}</a>`
+                : console.log(`File was uploaded to:${data}`)
                 console.log(data)
         }).catch(error => {
             // If there was a problem, show the error message
@@ -94,7 +94,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
             <button className="add-project-button" onClick={handleOpen}>
                 <AddCircleIcon fontSize="large"/>
             </button>
-            {/* <Modal
+            <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
@@ -107,17 +107,17 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
                         <input name="projectName" value={ projectName } onChange={ handleChange }></input>
                         <button type="submit">✓</button>
                     </form>
-                    <form enctype="multipart/form-data" onSubmit={ handleFileSubmit }>
-                        <label for="file">File</label>
+                    <form encType="multipart/form-data" onSubmit={ handleFileSubmit }>
+                        <label htmlFor="file">File</label>
                         <input id="file" name="file" type="file" required />
 
                         <input type="submit" value="Upload File" />
 
                         <div id="message"></div>
-                    </form> */}
-                    <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/>
-                {/* </div>
-            </Modal> */}
+                    </form>
+                    {/* <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/> */}
+                </div>
+            </Modal>
         </div>
     )
 }
