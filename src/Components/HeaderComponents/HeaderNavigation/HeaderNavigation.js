@@ -8,8 +8,8 @@ import './HeaderNavigation.css'
 export default function HeaderNavigation() {
     return (
         <div className="header-navigation">
-            <img className="logo" src={logo} alt="mayk logo" />
-            <h3>
+            <Link to="/"><img className="logo" src={logo} alt="mayk logo" /></Link>
+            <h3 className="nav-list">
             <Link className="projects" to="/Projects">Projects</Link> |
             Lending Library |
             Account

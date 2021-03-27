@@ -1,8 +1,9 @@
-import React, {useReducer} from 'react'
+import React, {useReducer, useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import UploadImage from '../UploadImage/UploadImage'
+import Canvas from '../Canvas/Canvas'
 
 
 import './NewProject.css'
@@ -13,6 +14,7 @@ const initialState = {
     lineCoordinates: ''
 }
 
+
 function reducer(state, { field, value }) {
     return {
         ...state,
@@ -21,6 +23,7 @@ function reducer(state, { field, value }) {
 }
 export default function NewProject({ fileHasBeenLoaded, url, file, handleFileChange, handleUpload }) {
 
+    const [displayedProject, setDisplayedProject] = useState("")
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const handleChange = (event) => {
@@ -28,19 +31,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
     }
     
     const { projectName, lineCoordinates, image} = state
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        fetch('http://localhost:4000/drawings', {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json" 
-            },
-            body: JSON.stringify(
-                { projectName, lineCoordinates, image }
-            )
-        })
-    }
+    let [fileLoaded, setFileLoaded] = useState(false)
 
     const handleFileSubmit = (event) => {
         event.preventDefault();
@@ -57,11 +48,31 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
                 ? console.log(`There was an error: ${error}`)
                 // Otherwise, show the URL of the uploaded file
                 : console.log(`File was uploaded to:${data}`)
-                console.log(data)
+            fetch('http://localhost:4000/drawings', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json" 
+            },
+            body: JSON.stringify(
+                { projectName, lineCoordinates, image: data }
+            )
+        })  
+        console.log(data)
         }).catch(error => {
             // If there was a problem, show the error message
             console.log(`There was an error: ${error.message}`)
         });
+    }
+
+    const startProject = (event) => {
+       //this is going to need to be a fetch request to show the most recent upload
+       //right now it is stillg grabbing a standard
+       fetch('http://localhost:4000/drawings/18')
+        .then(response => response.json())
+        .then(result => setDisplayedProject(result))
+        console.log("returned startProject")
+        setOpen(false);
+        setFileLoaded(true)
     }
 
 
@@ -77,8 +88,6 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
     }));
 
     const classes = useStyles();
-    // getModalStyle is not a pure function, we roll the style only on the first render
-    // const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
@@ -92,7 +101,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
     return (
         <div className="new-project">
             <button className="add-project-button" onClick={handleOpen}>
-                <AddCircleIcon fontSize="large"/>
+                <AddCircleIcon className="circle-icon" fontSize="large"/>
             </button>
             <Modal
                 open={open}
@@ -102,22 +111,23 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
             >
                 <div className="modal">
                 <h2 id="simple-modal-title">Start a New Project</h2>
-                    <form onSubmit={ handleSubmit }>
+                    <form>
                         <label>Project Name</label>
                         <input name="projectName" value={ projectName } onChange={ handleChange }></input>
-                        <button type="submit">✓</button>
                     </form>
                     <form encType="multipart/form-data" onSubmit={ handleFileSubmit }>
-                        <label htmlFor="file">File</label>
-                        <input id="file" name="file" type="file" required />
-
-                        <input type="submit" value="Upload File" />
-
-                        <div id="message"></div>
+                        <label htmlFor="image"></label>
+                        <input id="image" name="image" type="file" required />
+                        <input type="submit" name="image" value="Upload" />
                     </form>
+                    <button type="submit" onClick={ startProject }>Start</button>
                     {/* <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/> */}
                 </div>
             </Modal>
+            { fileLoaded 
+           ? <Canvas projectName={ projectName } image={ image } displayedProject={ displayedProject }/>
+           : null
+            }
         </div>
     )
 }

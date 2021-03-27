@@ -6,6 +6,11 @@
     padding: 0px 20px;
 }
 
+.project-thumbnail:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
 .thumbnail-image {
     height: 50%;
     float: bottom;
