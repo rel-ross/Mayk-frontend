@@ -1,28 +1,38 @@
 .new-project {
     display: flex;
     flex-direction: column;
-    margin-left: 200px;
     text-align: center;
     justify-content: center;
     align-items: center;
 }
 
 .modal {
-    position: absolute;
-    width: 400;
+    position: relative;
+    width: 400px;
     background-color: white;
-    border: 2px solid #000;
+    border: none;
     padding: 50px;
     margin-left: 30%;
     margin-top: 25%;
+}
+
+.modal:focus {
+    outline: none;
 }
 
 .add-project-button {
     background-color: transparent;
     border: none;
     color: #3f51b5;
+    /* margin-top: 15%; */
+    position: relative;
 }
 
 .add-project-button:hover {
     color: red;
+}
+
+
+.add-project-button:focus {
+    outline: none;
 }

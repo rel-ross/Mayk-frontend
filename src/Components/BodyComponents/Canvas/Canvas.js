@@ -7,21 +7,20 @@ import SaveIcon from '@material-ui/icons/Save';
 import './Canvas.css'
 
 
-export default function Canvas({ file, url, handleFileChange, handleUpload }) {
+export default function Canvas({ file, image, handleFileChange, handleUpload, displayedProject }) {
 
-
+    const { lineCoordinates } = displayedProject
     const [canvasState, setCanvasState] = useState({
         color: "#ffc600",
         width: 800,
         height: 500,
         brushRadius: 5,
         lazyRadius: 0,
-        hideGrid: true,
+        hideGrid: true
       })
 
       const canvas = useRef();
 
-    url="https://upload.wikimedia.org/wikipedia/commons/0/0d/Bedroom_Mitcham.jpg"
 
       const saveDrawingToDatabase = (projectName, lineCoordinates, image) => {
         fetch('http://localhost:4000/drawings', {
@@ -45,7 +44,7 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
                             "savedDrawing",
                             canvas.current.getSaveData()
                         )
-                        saveDrawingToDatabase("TEST project", localStorage.getItem("savedDrawing"), url)
+                        saveDrawingToDatabase("TEST project", localStorage.getItem("savedDrawing"), image)
                     }}
                 >
                  <SaveIcon style={{fill: "orange"}}/>
@@ -107,7 +106,7 @@ export default function Canvas({ file, url, handleFileChange, handleUpload }) {
           lazyRadius={canvasState.lazyRadius}
           canvasWidth={canvasState.width}
           canvasHeight={canvasState.height}
-          imgSrc= {url}
+          imgSrc= "https://i.imgur.com/dQtQ95m.jpg"
           hideGrid={canvasState.hideGrid}
           loadTimeOffset = {0}
         />
