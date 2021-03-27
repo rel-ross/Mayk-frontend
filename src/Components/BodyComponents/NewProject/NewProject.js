@@ -31,6 +31,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
     }
     
     const { projectName, lineCoordinates, image} = state
+    let [fileLoaded, setFileLoaded] = useState(false)
 
     const handleFileSubmit = (event) => {
         event.preventDefault();
@@ -65,9 +66,13 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
 
     const startProject = (event) => {
        //this is going to need to be a fetch request to show the most recent upload
+       //right now it is stillg grabbing a standard
        fetch('http://localhost:4000/drawings/18')
         .then(response => response.json())
         .then(result => setDisplayedProject(result))
+        console.log("returned startProject")
+        setOpen(false);
+        setFileLoaded(true)
     }
 
 
@@ -119,7 +124,10 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
                     {/* <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/> */}
                 </div>
             </Modal>
-            <Canvas projectName={ projectName } image={ image } displayedProject={ displayedProject }/>
+            { fileLoaded 
+           ? <Canvas projectName={ projectName } image={ image } displayedProject={ displayedProject }/>
+           : null
+            }
         </div>
     )
 }

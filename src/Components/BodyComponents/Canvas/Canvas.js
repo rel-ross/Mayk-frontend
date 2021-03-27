@@ -7,11 +7,11 @@ import SaveIcon from '@material-ui/icons/Save';
 import './Canvas.css'
 
 
-export default function Canvas({ file, image, handleFileChange, handleUpload, displayedProject }) {
+export default function Canvas({ file, image, handleFileChange, handleUpload, displayedProject, projectName }) {
 
     const { lineCoordinates } = displayedProject
     const [canvasState, setCanvasState] = useState({
-        color: "#ffc600",
+        color: "#000000",
         width: 800,
         height: 500,
         brushRadius: 5,
@@ -37,6 +37,7 @@ export default function Canvas({ file, image, handleFileChange, handleUpload, di
 
     return (
         <div>
+        <h1>{ projectName }</h1>
             <div className="canvas-toolbar">
                 <button
                     onClick={() => {
