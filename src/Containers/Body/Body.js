@@ -6,7 +6,7 @@ import './Body.css'
 
 import NewProjectContainer from '../NewProjectContainer/NewProjectContainer'
 import AllProjectsShowContainer from '../AllProjectsShowContainer/AllProjectsShowContainer'
-
+import LoginPage from '../LoginPage/LoginPage'
 
 export default function Body({projects}) {
 
@@ -39,6 +39,7 @@ export default function Body({projects}) {
     return (
         <div className="body-container">
              <Switch>
+                 <Route exact path="/" render={ (routerProps) => <LoginPage />} />
                  <Route exact path="/NewProject" render={ (routerProps) => <NewProjectContainer 
                     projects={projects} url={url} file={ file }  handleUpload={ handleUpload } 
                     handleFileChange={ handleFileChange }

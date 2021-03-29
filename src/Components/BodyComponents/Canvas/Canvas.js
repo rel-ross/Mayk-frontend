@@ -9,7 +9,8 @@ import './Canvas.css'
 
 export default function Canvas({ file, image, handleFileChange, handleUpload, displayedProject, projectName }) {
 
-    const { lineCoordinates } = displayedProject
+    const backgroundImageObject = displayedProject[0]
+    // console.log('bg image object type', typeof(backgroundImageObject.image))
     const [canvasState, setCanvasState] = useState({
         color: "#000000",
         width: 800,
@@ -20,7 +21,6 @@ export default function Canvas({ file, image, handleFileChange, handleUpload, di
       })
 
       const canvas = useRef();
-
 
       const saveDrawingToDatabase = (projectName, lineCoordinates, image) => {
         fetch('http://localhost:4000/drawings', {

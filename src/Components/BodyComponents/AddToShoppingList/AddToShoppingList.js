@@ -2,6 +2,8 @@ import React from 'react'
 import { Paper } from '@material-ui/core';
 import { useReducer } from 'react'
 
+import './AddToShoppingList.css'
+
 const initialState = {
     item: '',
     size: '',
