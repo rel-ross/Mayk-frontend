@@ -23,7 +23,7 @@ function reducer(state, { field, value }) {
 }
 export default function NewProject({ fileHasBeenLoaded, url, file, handleFileChange, handleUpload }) {
 
-    const [displayedProject, setDisplayedProject] = useState("")
+    const [displayedProject, setDisplayedProject] = useState([])
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const handleChange = (event) => {
@@ -31,7 +31,9 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
     }
     
     const { projectName, lineCoordinates, image} = state
-    let [fileLoaded, setFileLoaded] = useState(false)
+
+    const [fileLoaded, setFileLoaded] = useState(false)
+    const [open, setOpen] = useState(false);
 
     const handleFileSubmit = (event) => {
         event.preventDefault();
@@ -56,8 +58,9 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
             body: JSON.stringify(
                 { projectName, lineCoordinates, image: data }
             )
-        })  
-        console.log(data)
+        }).then(response => response.json())  
+        //this is setting the dispath as new en
+            .then(result => dispatch({ field: 'image', value: result[0].image}))
         }).catch(error => {
             // If there was a problem, show the error message
             console.log(`There was an error: ${error.message}`)
@@ -65,12 +68,10 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
     }
 
     const startProject = (event) => {
-       //this is going to need to be a fetch request to show the most recent upload
-       //right now it is stillg grabbing a standard
-       fetch('http://localhost:4000/drawings/18')
-        .then(response => response.json())
-        .then(result => setDisplayedProject(result))
-        console.log("returned startProject")
+    //    fetch('http://localhost:4000/drawings/75')
+    //     .then(response => response.json())
+    //     .then(result => setDisplayedProject(result))
+    //     console.log("returned startProject")
         setOpen(false);
         setFileLoaded(true)
     }
@@ -88,7 +89,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
     }));
 
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+   
 
     const handleOpen = () => {
         setOpen(true);
@@ -125,8 +126,8 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
                 </div>
             </Modal>
             { fileLoaded 
-           ? <Canvas projectName={ projectName } image={ image } displayedProject={ displayedProject }/>
-           : null
+            ? <Canvas projectName={ projectName } imageProp={ image } displayedProject={ displayedProject }/>
+            : null
             }
         </div>
     )

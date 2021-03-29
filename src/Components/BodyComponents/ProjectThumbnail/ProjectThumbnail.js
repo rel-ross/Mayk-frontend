@@ -8,7 +8,7 @@ export default function ProjectThumbnail( { project }) {
 
     return (
         <div className="project-thumbnail">
-            <h1>{ projectName }</h1>
+            <h2>{ projectName }</h2>
             <img className='thumbnail-image' src={ image } alt={projectName}></img>
         </div>
     )
