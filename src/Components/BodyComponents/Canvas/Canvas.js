@@ -108,7 +108,7 @@ export default function Canvas({ file, imageProp, handleFileChange, handleUpload
                 canvasWidth={canvasState.width}
                 canvasHeight={canvasState.height}
                 //   imgSrc= "https://i.imgur.com/dQtQ95m.jpg"
-                imgSrc="https://mayk-capstone.s3.us-east-2.amazonaws.com/images/1617045988319_Screen%20Shot%202021-03-15%20at%2011.23.50%20AM.png"
+                imgSrc={ imageProp }
                 hideGrid={canvasState.hideGrid}
                 loadTimeOffset={0}
             />
