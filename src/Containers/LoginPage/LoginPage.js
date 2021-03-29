@@ -113,9 +113,7 @@ export default function SignIn() {
         </form>
       </div>
       <Box mt={8}>
-        <Copyright />
       </Box>
-      <Link className="projects" to="/Projects">Clicke here</Link>
     </Container>
   );
 }
