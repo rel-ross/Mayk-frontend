@@ -4,6 +4,9 @@ import Modal from '@material-ui/core/Modal';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import UploadImage from '../UploadImage/UploadImage'
 import Canvas from '../Canvas/Canvas'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 
 import './NewProject.css'
@@ -113,15 +116,17 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
                 <div className="modal">
                 <h2 id="simple-modal-title">Start a New Project</h2>
                     <form>
-                        <label>Project Name</label>
-                        <input name="projectName" value={ projectName } onChange={ handleChange }></input>
+                        <TextField id="standard-basic" label="Project Name" name="projectName" value={ projectName } onChange={ handleChange } />
                     </form>
                     <form encType="multipart/form-data" onSubmit={ handleFileSubmit }>
                         <label htmlFor="image"></label>
-                        <input id="image" name="image" type="file" required />
-                        <input type="submit" name="image" value="Upload" />
+                        <label className="custom-file-upload">
+                            <input id="image" name="image" type="file" required />
+                            Select File
+                        </label>
+                        <Button variant="outlined" color="primary" type="submit" name="image" value="Upload">Upload</Button>
                     </form>
-                    <button type="submit" onClick={ startProject }>Start</button>
+                    <Button variant="outlined" color="primary" type="submit" onClick={ startProject } className="submit-button">Get Building!</Button>
                     {/* <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/> */}
                 </div>
             </Modal>

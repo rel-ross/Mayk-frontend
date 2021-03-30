@@ -3,6 +3,10 @@
     position: relative;
 }
 
+.project-show-container > * {
+    margin-bottom: 20px;
+}
+
 li {
     list-style: none;
 }

@@ -7,8 +7,10 @@ export default function ShoppingList() {
 
     return (
         <div> 
-            <Paper style={{
-                padding: 10
+           <Paper style={{
+                padding: 10,
+                marginBottom: 20
+            
             }}>
                 <h2>Shopping List</h2>
                 <ul>

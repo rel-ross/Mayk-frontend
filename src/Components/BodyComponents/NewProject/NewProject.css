@@ -14,10 +14,16 @@
     padding: 50px;
     margin-left: 30%;
     margin-top: 25%;
+    text-align: center;
+
 }
 
 .modal:focus {
     outline: none;
+}
+
+.modal > * {
+    margin: 30px;
 }
 
 .add-project-button {
@@ -35,4 +41,29 @@
 
 .add-project-button:focus {
     outline: none;
+}
+
+.submit-button {
+    margin: 0;
+    position: relative;
+
+    /* top: 80%; */
+    /* left: 50%; */
+    /* -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+}
+
+input[type="file"] {
+    display: none
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    padding: 8px 2px;
+    cursor: pointer;
+    margin: 0px 15px 15px 0px;
+    border-radius: 5px;
 }

@@ -25,8 +25,8 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
     
     return (
         <div className="project-show-container">
-            <div >
-                <Grid container spacing={spacing}>
+            <div>
+                <Grid container spacing={spacing} style={{margin: 30}}>
                     <Grid item xs={2}>
                         <ShoppingList />
                         <AddToShoppingList />
