@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Route, Link, Switch, Redirect } from 'react-router-dom'
-import {storage} from "../../firebase/firebase"
 
 import './Body.css'
 
@@ -14,25 +13,25 @@ export default function Body({projects}) {
     const [url, setURL] = useState("");
     
   
-    function handleFileChange(e) {
-      setFile(e.target.files[0]);
-      console.log(e.target.files[0])
-    }
+    // function handleFileChange(e) {
+    //   setFile(e.target.files[0]);
+    //   console.log(e.target.files[0])
+    // }
   
-    function handleUpload(e) {
-      e.preventDefault();
-      const uploadTask = storage.ref(`/${file.name}`).put(file);
-      uploadTask.on("state_changed", console.log, console.error, () => {
-        storage
-          .ref("/")
-          .child(file.name)
-          .getDownloadURL()
-          .then((url) => {
-            setFile(null);
-            setURL(url);
-          });
-      });
-    }
+    // function handleUpload(e) {
+    //   e.preventDefault();
+    //   const uploadTask = storage.ref(`/${file.name}`).put(file);
+    //   uploadTask.on("state_changed", console.log, console.error, () => {
+    //     storage
+    //       .ref("/")
+    //       .child(file.name)
+    //       .getDownloadURL()
+    //       .then((url) => {
+    //         setFile(null);
+    //         setURL(url);
+    //       });
+    //   });
+    // }
 
 
 
@@ -41,8 +40,9 @@ export default function Body({projects}) {
              <Switch>
                  <Route exact path="/" render={ (routerProps) => <LoginPage />} />
                  <Route exact path="/NewProject" render={ (routerProps) => <NewProjectContainer 
-                    projects={projects} url={url} file={ file }  handleUpload={ handleUpload } 
-                    handleFileChange={ handleFileChange }
+                    projects={projects} url={url} file={ file }  
+                    // handleUpload={ handleUpload } 
+                    // handleFileChange={ handleFileChange }
                 />} />
                  <Route exact path="/Projects" render={ (routerProps) => <AllProjectsShowContainer projects={projects}/>} />
              </Switch>

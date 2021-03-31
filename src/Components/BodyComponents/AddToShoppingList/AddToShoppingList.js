@@ -1,69 +1,60 @@
-import React from 'react'
+import React, { state, useState } from 'react'
 import { Paper } from '@material-ui/core';
 import { useReducer } from 'react'
 
 import './AddToShoppingList.css'
 
-const initialState = {
-    item: '',
-    size: '',
-    quantity: ''
-}
+// const initialState = {
+//     name: '',
+//     size: '',
+//     quantity: ''
+// }
 
-function reducer(state, { field, value }) {
-    return {
-        ...state,
-        [field]: value
+// function reducer(state, { field, value }) {
+//     return {
+//         ...state,
+//         [field]: value
+//     }
+// }
+
+export default function AddToShoppingList({ addTodo }) {
+    // const [state, dispatch] = useReducer(reducer, initialState)
+    const [materialItem, setMaterialItem] = useState({
+        item: '',
+        size: '',
+        quantity: ''
+    })
+
+    const handleChange = (event) => {
+        setMaterialItem({
+            [event.target.name]:  event.target.value
+        })
     }
-}
 
-export default function AddToShoppingList() {
-        const [state, dispatch] = useReducer(reducer, initialState)
-    
-    
-        const handleChange = (event) => {
-           dispatch({ field: event.target.name, value: event.target.value })
-        }
-    
-        const { item, size, quantity } = state
-    
-        const handleSubmit = (event) => {
-            event.preventDefault()
-            // addShoppingItem(state)
-            fetch('http://localhost:3000/portfolio_items', {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json" 
-                },
-                body: JSON.stringify({
-                    portfolioItem: { item, size, quantity }
-                })
-            })
-            console.log(JSON.stringify({
-                item, size, quantity
-            }))
-        }  
+    const handleSubmit = (event) => {
+        event.preventDefault()
+            addTodo(materialItem)
+    }
 
     return (
-        <div> 
+        <div>
             <Paper style={{
                 padding: 10,
-                marginBottom: 10
-            
+                marginBottom: 10,
+                textAlign: 'center',
+                justifyContent: 'center'
+
             }}>
                 <h2>Add Material</h2>
                 <ul>
-                <form className="shopping-item-form" onSubmit={ handleSubmit }>
+                <form onSubmit={ handleSubmit }>
                     <label>Item:</label>
-                    <input name="item" value={ item } onChange={ handleChange }></input>
-                    
+                    <input name="item" value={state.item} onChange={ handleChange }></input>
                     <label>Size:</label>
-                    <input name="size" value={ size } onChange={ handleChange }></input>
-
-                    <label>Quantity</label>
-                    <input name="quantity" value={ quantity } onChange={ handleChange }></input>
-
-                    <button type="submit" onSubmit={ handleSubmit }>Submit</button>
+                    <input name="size" value={ state.size } onChange={ handleChange }></input>
+                    <label>Quantity:</label>
+                    <input name="quantity" value={ state.quantity } onChange={ handleChange }></input>
+                    <button type="submit">Submit</button>
                 </form>
                 </ul>
             </Paper>
