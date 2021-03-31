@@ -3,6 +3,7 @@ import CanvasDraw from "react-canvas-draw";
 import UndoIcon from '@material-ui/icons/Undo';
 import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
+import Button from '@material-ui/core/Button';
 
 import './Canvas.css'
 
@@ -113,15 +114,15 @@ export default function Canvas({ file, imageProp, handleFileChange, handleUpload
                 loadTimeOffset={0}
             />
 
-            <button
+            <Button variant="outlined" color="primary" style={{marginTop: 20}}
                 onClick={() => {
                     canvas.current.loadSaveData(
                         localStorage.getItem("savedDrawing")
                     );
                 }}
             >
-                Loads previous drawing
-        </button>
+                Load previous drawing
+        </Button>
         </div>
     )
 }

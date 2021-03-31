@@ -6,7 +6,6 @@ import ReactTooltip from 'react-tooltip';
 
 
 import ProjectHeader from '../../Components/BodyComponents/ProjectHeader/ProjectHeader'
-import AddToShoppingList from '../../Components/BodyComponents/AddToShoppingList/AddToShoppingList'
 import ShoppingList from '../../Components/BodyComponents/ShoppingList/ShoppingList'
 import Canvas from '../../Components/BodyComponents/Canvas/Canvas'
 import UploadImage from '../../Components/BodyComponents/UploadImage/UploadImage'
@@ -27,10 +26,9 @@ export default function Body({url, file, handleFileChange, handleUpload}) {
         <div className="project-show-container">
             <div>
                 <Grid container spacing={spacing} style={{margin: 30}}>
-                    <Grid item xs={2}>
+                    {/* <Grid item xs={2}>
                         <ShoppingList />
-                        <AddToShoppingList />
-                    </Grid>
+                    </Grid> */}
                     <Grid item xs={10}>
                         {
                         fileLoaded

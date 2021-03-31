@@ -11,6 +11,7 @@
 }
 
 .thumbnail-image {
-    height: 50%;
-    float: bottom;
+    max-height: 50%;
+    width: 80%;
+    /* float: bottom; */
 }

@@ -37,6 +37,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
 
     const [fileLoaded, setFileLoaded] = useState(false)
     const [open, setOpen] = useState(false);
+    const [completedUpload, setCompletedUpload] = useState(false);
 
     const handleFileSubmit = (event) => {
         event.preventDefault();
@@ -64,11 +65,13 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
         }).then(response => response.json())  
         //this is setting the dispath as new en
             .then(result => dispatch({ field: 'image', value: result[0].image}))
+            .then(setCompletedUpload(true))
         }).catch(error => {
             // If there was a problem, show the error message
             console.log(`There was an error: ${error.message}`)
         });
     }
+
 
     const startProject = (event) => {
     //    fetch('http://localhost:4000/drawings/75')
@@ -126,7 +129,11 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
                         </label>
                         <Button variant="outlined" color="primary" type="submit" name="image" value="Upload">Upload</Button>
                     </form>
-                    <Button variant="outlined" color="primary" type="submit" onClick={ startProject } className="submit-button">Get Building!</Button>
+                    {completedUpload 
+                        ?<Button variant="outlined" color="primary" type="submit" onClick={ startProject } className="submit-button">Get Building!</Button>
+                        :null
+                    }
+                    
                     {/* <UploadImage fileHasBeenLoaded={ fileHasBeenLoaded } file={ file } url={ url } handleUpload={ handleUpload } handleFileChange={ handleFileChange } file={ file }/> */}
                 </div>
             </Modal>
