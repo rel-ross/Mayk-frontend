@@ -38,7 +38,7 @@ export default function AddToShoppingList({ addTodo }) {
 
     return (
         <div>
-            <Paper style={{
+            {/* <Paper style={{
                 padding: 10,
                 marginBottom: 10,
                 textAlign: 'center',
@@ -49,15 +49,15 @@ export default function AddToShoppingList({ addTodo }) {
                 <ul>
                 <form onSubmit={ handleSubmit }>
                     <label>Item:</label>
-                    <input name="item" value={state.item} onChange={ handleChange }></input>
+                    <input name="item" value={item} onChange={ handleChange }></input>
                     <label>Size:</label>
-                    <input name="size" value={ state.size } onChange={ handleChange }></input>
+                    <input name="size" value={ size } onChange={ handleChange }></input>
                     <label>Quantity:</label>
-                    <input name="quantity" value={ state.quantity } onChange={ handleChange }></input>
+                    <input name="quantity" value={ quantity } onChange={ handleChange }></input>
                     <button type="submit">Submit</button>
                 </form>
                 </ul>
-            </Paper>
+            </Paper> */}
         </div>
     )
 }

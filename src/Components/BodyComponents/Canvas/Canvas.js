@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import './Canvas.css'
 
 
-export default function Canvas({ file, imageProp, handleFileChange, handleUpload, displayedProject, projectName }) {
+export default function Canvas({ id, file, imageProp, handleFileChange, handleUpload, displayedProject, projectName }) {
 
     const [canvasState, setCanvasState] = useState({
         color: "#000000",
@@ -19,21 +19,31 @@ export default function Canvas({ file, imageProp, handleFileChange, handleUpload
         hideGrid: true
     })
 
+    const [lineCoordinate, setLineCoordinate] = useState("")
+
     console.log("image:", imageProp)
 
     const canvas = useRef();
 
-    // const saveDrawingToDatabase = (projectName, lineCoordinates, image) => {
-    //     fetch('http://localhost:4000/drawings', {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-type": "application/json"
-    //         },
-    //         body: JSON.stringify(
-    //             { projectName, lineCoordinates, image }
-    //         )
-    //     })
-    // }
+    const saveDrawingToDatabase = (lineCoordinates) => {
+        fetch(`http://localhost:4000/drawings/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(
+                { lineCoordinates }
+            )
+        })
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/drawings/${id}`)
+          .then(response => response.json())
+          .then(result => {
+            setLineCoordinate(result[0].lineCoordinates)
+          })
+      }, [])
 
 
     return (
@@ -46,7 +56,7 @@ export default function Canvas({ file, imageProp, handleFileChange, handleUpload
                             "savedDrawing",
                             canvas.current.getSaveData()
                         )
-                        // saveDrawingToDatabase("TEST project", localStorage.getItem("savedDrawing"), image)
+                        saveDrawingToDatabase(localStorage.getItem("savedDrawing"))
                     }}
                 >
                     <SaveIcon style={{ fill: "orange" }} />
@@ -117,11 +127,11 @@ export default function Canvas({ file, imageProp, handleFileChange, handleUpload
             <Button variant="outlined" color="primary" style={{marginTop: 20}}
                 onClick={() => {
                     canvas.current.loadSaveData(
-                        localStorage.getItem("savedDrawing")
+                        lineCoordinate
                     );
                 }}
             >
-                Load previous drawing
+                Load Sketch
         </Button>
         </div>
     )

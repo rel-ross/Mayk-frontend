@@ -11,9 +11,8 @@ export default function Header() {
     return (
         <div>
         <div className="header__bg"></div>
-    
-            <HeaderNavigation />
-            <HeaderLogin />
+        <HeaderNavigation />
+         <HeaderLogin />
         </div>
     )
 }

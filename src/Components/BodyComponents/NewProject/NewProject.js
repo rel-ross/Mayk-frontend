@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import './NewProject.css'
 
 const initialState = {
+    id: '',
     image: '',
     projectName: '',
     lineCoordinates: ''
@@ -33,7 +34,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
         dispatch({ field: event.target.name, value: event.target.value })
     }
     
-    const { projectName, lineCoordinates, image} = state
+    const { id, projectName, lineCoordinates, image} = state
 
     const [fileLoaded, setFileLoaded] = useState(false)
     const [open, setOpen] = useState(false);
@@ -64,7 +65,10 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
             )
         }).then(response => response.json())  
         //this is setting the dispath as new en
-            .then(result => dispatch({ field: 'image', value: result[0].image}))
+            .then(result => {
+                dispatch({ field: 'image', value: result[0].image})
+                dispatch({ field: 'id', value: result[0].id})
+            })
             .then(setCompletedUpload(true))
         }).catch(error => {
             // If there was a problem, show the error message
@@ -138,7 +142,7 @@ export default function NewProject({ fileHasBeenLoaded, url, file, handleFileCha
                 </div>
             </Modal>
             { fileLoaded 
-            ? <Canvas projectName={ projectName } imageProp={ image } displayedProject={ displayedProject }/>
+            ? <Canvas id={ id } projectName={ projectName } imageProp={ image } displayedProject={ displayedProject }/>
             : null
             }
         </div>
