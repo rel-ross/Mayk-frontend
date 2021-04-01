@@ -16,9 +16,9 @@ export default function ProjectThumbnail( { project }) {
     return (
         <div>
             {openCanvas
-                ? <Canvas id={ id } projectName={ projectName } imageProp={ image } lineCoordinates = { lineCoordinates }/>
+                ? <Canvas id={ id } projectName={ projectName } imageProp={ image } lineCoordinates = { lineCoordinates } />
                 : <div className="project-thumbnail" onClick={ thumbnailSelected }>
-                    <h2>{ projectName }</h2>
+                    <h2 className='project-name'>{ projectName }</h2>
                     <img className='thumbnail-image' src={ image } alt={projectName}></img>
                 </div>
             }
