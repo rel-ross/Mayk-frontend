@@ -1,6 +1,6 @@
-# Capstone- Frontend
+# Mayk (Frontend)
 
-TBD
+The DIYer's App
 
 ## Table of Contents
 <ul>
@@ -14,35 +14,40 @@ TBD
 </ul>
 
 ## General Info
-TBD
+An app for DIYers to create and save sketches for new DIY projects
 
 ## Video
 TBD
 
 ## Technologies
 <ul>
-    <li>tbd</li>
+    <li>React</li>
 </ul>
 
 ## Setup
 To run this project: <ol>
-  <li>TBD</li>
+  <li>Clone Repo</li>
+  <li>Run with 'npm start'</li>
   </ol>
 
 ## Features
 <ul>
-  <li>TBD</li>
+  <li>Upload project photo</li>
+  <li>Sketch design on project photo </li>
+  <li>Save sketch to be accesed for future reference </li>
 </ul>
 
 
 ## Unfinished Features
  <ul>
-  <li>TBD</li>
+  <li>Functional sign in/register buttons</li>
+  <li>Functional Account link</li>
  </ul>
 
  ## Libraries
  <ul>
   <li><a href="https://github.com/embiem/react-canvas-draw">react-canvas-app</a></li>
+  <li>Material UI</li>
  </ul>
 
 ## Contact
